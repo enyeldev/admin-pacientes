@@ -1,3 +1,5 @@
+import { PatientForm } from "../components/PatientForm";
+
 export const DashboardPage = () => {
   return (
     <div className="container mx-auto p-4">
@@ -7,8 +9,7 @@ export const DashboardPage = () => {
       </h1>
 
       <div className="mt-12 md:flex">
-        {/* <PatientForm />
-        <PatientsList /> */}
+        <PatientForm />
       </div>
     </div>
   );
