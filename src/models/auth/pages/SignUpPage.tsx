@@ -1,13 +1,12 @@
 import { useForm } from "react-hook-form";
 import type { UserLogin } from "../types";
-
+import { ErrorComponent } from "../../../components/ErrorComponent";
 import { BtnSubmit } from "../../../components/BtnSubmit";
 import { useAuthStore } from "../store/store";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ErrorComponent } from "../../../components/ErrorComponent";
 
-export const LoginPage = () => {
+export const SignUpPage = () => {
   const {
     register,
     formState: { errors },
@@ -16,12 +15,12 @@ export const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const { logIn } = useAuthStore();
+  const { signUp } = useAuthStore();
 
   const registerPatient = (data: UserLogin) => {
     try {
-      logIn(data);
-      navigate("/main");
+      signUp(data);
+      navigate("/");
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
@@ -34,7 +33,7 @@ export const LoginPage = () => {
   return (
     <div className="bg-white shadow-sm rounded-md p-4">
       <h1 className="font-black text-xl text-center">
-        Inicia Sesion y Administra tus{" "}
+        Crea una cuenta y Administra tus{" "}
         <span className="text-indigo-700">Pacientes</span>
       </h1>
 
@@ -79,16 +78,13 @@ export const LoginPage = () => {
         </div>
 
         <p className="text-center text-sm font-bold">
-          No tienes una cuenta?{" "}
-          <Link
-            to={"singUp"}
-            className="underline text-indigo-700 cursor-pointer"
-          >
-            Registrate aqui
+          Tienes una cuenta?{" "}
+          <Link to={"/"} className="underline text-indigo-700 cursor-pointer">
+            Inicia sesion aqui
           </Link>
         </p>
 
-        <BtnSubmit btnText={"Iniciar Sesion"} />
+        <BtnSubmit btnText={"Registrate"} />
       </form>
     </div>
   );

@@ -5,7 +5,8 @@ import type { UserLogin } from "../types";
 
 type AuthState = {
   usersList: UserLogin[];
-  logIn: (data: UserLogin) => boolean;
+  logIn: (data: UserLogin) => void;
+  signUp: (data: UserLogin) => void;
 };
 
 export const useAuthStore = create<AuthState>()(
@@ -21,16 +22,28 @@ export const useAuthStore = create<AuthState>()(
           )[0];
 
           if (!existUser) {
-            toast.error("El usuario no existe.");
-            return false;
+            throw new Error("El usuario no existe.");
           }
 
           if (existUser.password !== password) {
-            toast.error("Contraseña incorrecta.");
-            return false;
+            throw new Error("Contraseña incorrecta.");
+          }
+        },
+        signUp: (data) => {
+          const { password, username } = data;
+
+          const isAlReadyAnUser = get().usersList.filter(
+            (e) => e.username === username
+          )[0];
+
+          if (isAlReadyAnUser) {
+            toast.error("Ya existe un usuario con ese nombre.");
+            return;
           }
 
-          return true;
+          set((state) => ({
+            usersList: [...state.usersList, data],
+          }));
         },
       }),
       {
