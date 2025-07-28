@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 export const DashboardLayout = () => {
   return (
@@ -6,6 +7,7 @@ export const DashboardLayout = () => {
       <div className="">
         <Outlet />
       </div>
+      <ToastContainer />
     </>
   );
 };
