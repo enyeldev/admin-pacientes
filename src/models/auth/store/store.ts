@@ -30,15 +30,14 @@ export const useAuthStore = create<AuthState>()(
           }
         },
         signUp: (data) => {
-          const { password, username } = data;
+          const { username } = data;
 
           const isAlReadyAnUser = get().usersList.filter(
             (e) => e.username === username
           )[0];
 
           if (isAlReadyAnUser) {
-            toast.error("Ya existe un usuario con ese nombre.");
-            return;
+            throw new Error("Ya existe un usuario con ese nombre.");
           }
 
           set((state) => ({

@@ -21,7 +21,7 @@ export const LoginPage = () => {
   const registerPatient = (data: UserLogin) => {
     try {
       logIn(data);
-      navigate("/main");
+      navigate("/dashboard");
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
