@@ -1,4 +1,5 @@
 import { PatientForm } from "../components/PatientForm";
+import { PatientsList } from "../components/PatientList";
 
 export const DashboardPage = () => {
   return (
@@ -10,6 +11,7 @@ export const DashboardPage = () => {
 
       <div className="mt-12 md:flex">
         <PatientForm />
+        <PatientsList />
       </div>
     </div>
   );
