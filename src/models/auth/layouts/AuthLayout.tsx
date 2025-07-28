@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-export const MainLayout = () => {
+export const AuthLayout = () => {
   return (
     <>
       <div className="p-4 flex items-center justify-center w-screen h-dvh">
